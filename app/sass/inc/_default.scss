@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.1s ease-in;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  min-width: 320px;
+  position: relative;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 400;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+a {
+  text-decoration: none;
+  background: transparent;
+
+  &:visited {
+    filter: grayscale(50%);
+  }
+  &:active,
+  &:hover {
+    outline: 0;
+  }
+  img {
+    border: 0;
+  }
+}
+
+td,
+th {
+  padding: 0;
+}
+ol,
+ul {
+  list-style: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  appearance: none;
+  border-radius: 0;
+  text-transform: none;
+  box-sizing: border-box;
+  outline: none !important;
+  background-clip: padding-box;
+  background-color: transparent;
+}
+
+input {
+  line-height: normal;
+
+  &[type="reset"],
+  &[type="submit"] {
+    cursor: pointer;
+    appearance: button;
+  }
+
+  &[type="checkbox"],
+  &[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  &[type="number"] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      height: auto;
+    }
+  }
+
+  &[type="search"] {
+    appearance: textfield;
+    box-sizing: border-box;
+
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration {
+      appearance: none;
+    }
+  }
+}
+
+textarea {
+  resize: none;
+  overflow: auto;
+}
+
+button,
+html input[type="button"] {
+  cursor: pointer;
+  appearance: button;
+}
+
+select {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  border: 0;
+  vertical-align: top;
+}
+
+.hidden {
+  display: none;
+}
+
+.clearfix {
+  clear: both;
+}

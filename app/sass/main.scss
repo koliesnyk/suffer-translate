@@ -1,0 +1,248 @@
+@import "inc/_default.scss";
+@import "inc/_vars.scss";
+
+$projectRed: #ec5f67;
+$projectOrange: #f99157;
+$projectYellow: #fac863;
+$projectGreen: #99c794;
+$projectBlueGreen: #5fb3b3;
+$projectBlue: #6699cc;
+$projectViolet: #c594c5;
+$projectBrown: #ab7967;
+
+/* Greys */
+$projectGrey8: #1b2b34;
+$projectGrey7: #343d46;
+$projectGrey6: #4f5b66;
+$projectGrey5: #65737e;
+$projectGrey4: #a7adba;
+$projectGrey3: #c0c5ce;
+$projectGrey2: #cdd3de;
+$projectGrey1: #d8dee9;
+
+$headingFont: inherit;
+$bodyFont: inherit;
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+
+html,
+body {
+  background-color: #dedede;
+
+  @include mobile {
+    font-size: 14px;
+  }
+}
+
+.form {
+  color: #000;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  max-width: 100%;
+
+  @include mobile {
+    padding: 2rem 1rem;
+    border-radius: 0;
+  }
+
+  .fieldset {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    @include tablet {
+      display: block;
+      width: 100%;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+
+      @include tablet {
+        margin-bottom: 1rem;
+      }
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-size: 1rem;
+
+      @include tablet {
+        width: 100%;
+        height: 3rem;
+        padding: 0.2rem 1rem;
+
+        &:not(:last-child) {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+
+  label {
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      &:not(:first-child) {
+        margin-top: 1em;
+      }
+    }
+  }
+
+  input {
+    padding: 1rem;
+    outline: none;
+    height: 3.5rem;
+    color: $projectGrey7;
+    font-family: $headingFont;
+    font-size: 1rem;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+
+    &[type="text"]:focus,
+    &[type="email"]:focus {
+      border-color: $projectRed;
+    }
+
+    &[type="text"]:focus:valid {
+      border-color: $projectGreen;
+    }
+
+    &[type="text"]:required:focus:invalid,
+    &[type="email"]:required:focus:invalid {
+      border-color: $projectRed;
+    }
+
+    &[type="text"]:required:focus:valid,
+    &[type="email"]:required:focus:valid {
+      border-color: $projectGreen;
+    }
+  }
+
+  button,
+  input[type="submit"] {
+    display: block;
+    font-family: $headingFont;
+    color: $projectGrey1;
+    font-size: 1rem;
+    background-color: $projectGrey5;
+    cursor: pointer;
+    padding: 1rem 3rem;
+    height: 3.5rem;
+
+    &:hover {
+      color: white;
+      background-color: $projectBlueGreen;
+    }
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header,
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $projectGrey8;
+  color: #fff;
+}
+
+header {
+  padding: 1rem;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: lighter;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+
+    @include mobile {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem;
+
+  @include mobile {
+    padding: 2rem 0;
+  }
+}
+
+footer {
+  padding: 2rem;
+  font-weight: lighter;
+  letter-spacing: 0.1rem;
+}
+
+.fields {
+  padding: 1rem;
+  border: 2px solid $projectGrey4;
+
+  &:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mobile {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  button:not(:last-child) {
+    margin-right: 1rem;
+
+    @include mobile {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.result-section {
+  color: #000;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  margin-top: 3rem;
+  width: 100%;
+  overflow: hidden;
+
+  &-inner {
+    overflow: auto;
+    width: 100%;
+  }
+}
