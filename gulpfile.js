@@ -65,6 +65,4 @@ gulp.task("watch", function () {
   gulp.watch("app/html-dev/*.html", gulp.parallel("html"));
 });
 
-gulp.task("build", ["html", "scripts", "styles"]);
-
 gulp.task("default", gulp.parallel("styles", "browser-sync", "watch"));
