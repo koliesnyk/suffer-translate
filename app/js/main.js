@@ -21,9 +21,8 @@ $(document).ready(function () {
 function addField() {
   var fields = `
     <div class="fieldset">
-      <input type="text" name="caption" placeholder="Enter Caption" />
       <input type="text" name="text" placeholder="Enter Text" />
-      <input type="text" name="translate" placeholder="Enter Translation" />
+      <input type="text" name="translation" placeholder="Enter Translation" />
       <button class="remove">Remove</button>
     </div>
   `;
@@ -41,41 +40,36 @@ function createGuid() {
 
 function generateCode() {
   var result = "";
-  var fieldsResult = "";
-  var translateResults = "";
+  var fieldResults = "";
+  var translationResults = "";
 
   var className = $("input[name=class-name]").val();
 
   $(".fields .fieldset").each(function (index) {
-    var caption = $(this).find("input[name=caption]").val();
     var text = $(this).find("input[name=text]").val();
-    var translate = $(this).find("input[name=translate]").val();
-    var stringName = caption.replace(/\s/g, "");
+    var translation = $(this).find("input[name=translation]").val();
+    var stringName = text.replace(/\s/g, "");
 
-    fieldsResult += `
+    fieldResults += `
       [Ordinal(${index + 1})]
       [ID("{${createGuid()}}")]
-      [Caption("${caption} Text Caption")]
+      [Caption("${text} Text Caption")]
       [Access(AccessLevel.System)]
       public MetaStoreString ${stringName}Caption { get; set; } = new("${text}");
     `;
 
-    translateResults += `
-      ${stringName}Caption.SetRootValueByLanguage("${translate}", "de-DE");
-    `;
+    translationResults += `${stringName}Caption.SetRootValueByLanguage("${translation}", "de-DE");`;
   });
 
   result = `
     public class ${className} : MetaStoreContainer
     {
-        ${fieldsResult}
-
-        public Dictionary<int, MetaStoreString> Folders { get; set; } = new Dictionary<int, MetaStoreString>();
-
-        public override async ValueTask<OpResult> InitializeNodeAsync(IMetaStoreContext context, bool forceInit = false)
+        ${fieldResults}
+        public Dictionary&lt;int, MetaStoreString> Folders { get; set; } = new Dictionary&lt;int, MetaStoreString>();
+        public override async ValueTask&lt;OpResult> InitializeNodeAsync(IMetaStoreContext context, bool forceInit = false)
         {
             await base.InitializeNodeAsync(context);
-            ${translateResults}
+            ${translationResults}
             return OpStatus.OK;
         }
     }
@@ -83,6 +77,4 @@ function generateCode() {
 
   $(".result-section").removeClass("hidden");
   $(".code").html(result);
-
-  console.log(result);
 }
