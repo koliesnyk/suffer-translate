@@ -1,17 +1,17 @@
-var gulp				 = require('gulp'),
-		sass				 = require('gulp-sass')(require('sass')),
-		browserSync  = require('browser-sync'),
-		cleancss		 = require('gulp-clean-css'),
-		autoprefixer = require('gulp-autoprefixer'),
-		fileinclude	 = require('gulp-file-include');
+var gulp = require("gulp"),
+  sass = require("gulp-sass")(require("sass")),
+  browserSync = require("browser-sync"),
+  cleancss = require("gulp-clean-css"),
+  autoprefixer = require("gulp-autoprefixer"),
+  fileinclude = require("gulp-file-include");
 
-gulp.task('browser-sync', function () {
-	browserSync({
-		server: {
-			baseDir: 'app'
-		},
-		notify: false,
-	});
+gulp.task("browser-sync", function () {
+  browserSync({
+    server: {
+      baseDir: "app",
+    },
+    notify: false,
+  });
 });
 
 gulp.task("styles", function () {
@@ -38,27 +38,33 @@ gulp.task("styles", function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('html', function() {
-	return gulp.src('app/html-dev/*.html')
-	.pipe(fileinclude({
-		prefix: '@@',
-		basepath: '@file'
-	}))
-	.pipe(gulp.dest('app/'))
-	.pipe(browserSync.reload({ stream: true }))
+gulp.task("html", function () {
+  return gulp
+    .src("app/html-dev/*.html")
+    .pipe(
+      fileinclude({
+        prefix: "@@",
+        basepath: "@file",
+      })
+    )
+    .pipe(gulp.dest("app/"))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('scripts', function () {
-	return gulp.src('app/js/**/*.js')
-		.pipe(browserSync.reload({
-			stream: true
-		}));
+gulp.task("scripts", function () {
+  return gulp.src("app/js/**/*.js").pipe(
+    browserSync.reload({
+      stream: true,
+    })
+  );
 });
 
-gulp.task('watch', function () {
-	gulp.watch('app/sass/**/*.scss', gulp.parallel('styles'));
-	gulp.watch('app/js/**/*.js', gulp.parallel('scripts'));
-	gulp.watch('app/html-dev/*.html', gulp.parallel('html'));
+gulp.task("watch", function () {
+  gulp.watch("app/sass/**/*.scss", gulp.parallel("styles"));
+  gulp.watch("app/js/**/*.js", gulp.parallel("scripts"));
+  gulp.watch("app/html-dev/*.html", gulp.parallel("html"));
 });
 
-gulp.task('default', gulp.parallel('styles', 'browser-sync', 'watch'));
+gulp.task("build", ["html", "scripts", "styles"]);
+
+gulp.task("default", gulp.parallel("styles", "browser-sync", "watch"));
