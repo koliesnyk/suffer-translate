@@ -76,5 +76,9 @@ function generateCode() {
   `;
 
   $(".result-section").removeClass("hidden");
-  $(".code").html(result);
+  $(".result-section-inner").html(`
+    <pre>
+      <code>${result}</code>
+    </pre>
+  `);
 }
