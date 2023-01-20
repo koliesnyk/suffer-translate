@@ -48,7 +48,7 @@ function generateCode() {
   $(".fields .fieldset").each(function (index) {
     var text = $(this).find("input[name=text]").val();
     var translation = $(this).find("input[name=translation]").val();
-    var stringName = text.replace(/\s/g, "");
+    var stringName = text.replace(/[^a-zA-Z ]/g, "");
 
     fieldResults += `
       [Ordinal(${index + 1})]
