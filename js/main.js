@@ -58,7 +58,8 @@ function generateCode() {
       public MetaStoreString ${stringName}Caption { get; set; } = new("${text}");
     `;
 
-    translationResults += `${stringName}Caption.SetRootValueByLanguage("${translation}", "de-DE");`;
+    translationResults += `
+            ${stringName}Caption.SetRootValueByLanguage("${translation}", "de-DE");`;
   });
 
   result = `
@@ -70,6 +71,7 @@ function generateCode() {
         {
             await base.InitializeNodeAsync(context);
             ${translationResults}
+
             return OpStatus.OK;
         }
     }

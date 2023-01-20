@@ -1,0 +1,27 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Garbage files
+.DS_Store
+
+# Test results
+test.xunit
+
+# Dependency directory
+.history
+node_modules
+docs
+
+# Other files & folders
+.idea
+.vscode
+.vs
+docs
+package-lock.json
+sftp-config.json
