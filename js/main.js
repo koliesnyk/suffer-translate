@@ -44,6 +44,7 @@ function generateCode() {
   var translationResults = "";
 
   var className = $("input[name=class-name]").val();
+  var classNameClear = className.replace(/[^A-Z0-9]/gi, "");
 
   $(".fields .fieldset").each(function (index) {
     var text = $(this).find("input[name=text]").val();
@@ -63,7 +64,7 @@ function generateCode() {
   });
 
   result = `
-    public class ${className}Info : MetaStoreContainer
+    public class ${classNameClear}Info : MetaStoreContainer
     {
         ${fieldResults}
         public Dictionary&lt;int, MetaStoreString> Folders { get; set; } = new Dictionary&lt;int, MetaStoreString>();
