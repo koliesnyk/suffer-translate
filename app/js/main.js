@@ -63,7 +63,7 @@ function generateCode() {
   });
 
   result = `
-    public class ${className}Info : MetaStoreContainer
+    public class SBS${className}Info : MetaStoreContainer
     {
         ${fieldResults}
         public Dictionary&lt;int, MetaStoreString> Folders { get; set; } = new Dictionary&lt;int, MetaStoreString>();

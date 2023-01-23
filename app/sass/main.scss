@@ -50,6 +50,12 @@ body {
   padding: 2rem;
   max-width: 100%;
 
+  &-title {
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+  }
+
   @include mobile {
     padding: 2rem 1rem;
     border-radius: 0;
