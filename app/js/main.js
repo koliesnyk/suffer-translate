@@ -48,7 +48,7 @@ function generateCode() {
   $(".fields .fieldset").each(function (index) {
     var text = $(this).find("input[name=text]").val();
     var translation = $(this).find("input[name=translation]").val();
-    var stringName = text.replace(/[^a-zA-Z ]/g, "");
+    var stringName = text.replace(/[^A-Z0-9]/gi, "");
 
     fieldResults += `
       [Ordinal(${index + 1})]
@@ -63,7 +63,7 @@ function generateCode() {
   });
 
   result = `
-    public class SBS${className}Info : MetaStoreContainer
+    public class ${className}Info : MetaStoreContainer
     {
         ${fieldResults}
         public Dictionary&lt;int, MetaStoreString> Folders { get; set; } = new Dictionary&lt;int, MetaStoreString>();
