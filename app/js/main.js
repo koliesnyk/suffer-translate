@@ -41,10 +41,17 @@ function createGuid() {
   return newGuid.toUpperCase();
 }
 
+function titleCase(str) {
+  var splitStr = str.toLowerCase().split(" ");
+  for (var i = 0; i < splitStr.length; i++) {
+    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+  return splitStr.join(" ");
+}
+
 function generateCode() {
   var result = "";
   var fieldResults = "";
-  var translationResults = "";
 
   var className = $("input[name=class-name]").val();
   var classNameClear = className.replace(/[^A-Z0-9]/gi, "");
@@ -52,32 +59,27 @@ function generateCode() {
   $(".fields .fieldset").each(function (index) {
     var text = $(this).find("input[name=text]").val();
     var translation = $(this).find("input[name=translation]").val();
-    var stringName = text.replace(/[^A-Z0-9]/gi, "");
+    var stringName = titleCase(text).replace(/[^A-Z0-9]/gi, "");
 
     fieldResults += `
       [Ordinal(${index + 1})]
       [ID("{${createGuid()}}")]
       [Caption("${text} Text Caption")]
       [Access(AccessLevel.System)]
-      public MetaStoreString ${stringName}Caption { get; set; } = new("${text}");
+      public MetaStoreString ${stringName}Caption { get; set; } = new("${text}", ("${translation}", "de-DE"));
     `;
-
-    translationResults += `
-            ${stringName}Caption.SetRootValueByLanguage("${translation}", "de-DE");`;
   });
 
   result = `
     public class ${classNameClear}Info : MetaStoreContainer
     {
-        ${fieldResults}
-        public Dictionary&lt;int, MetaStoreString> Folders { get; set; } = new Dictionary&lt;int, MetaStoreString>();
-        public override async ValueTask&lt;OpResult> InitializeNodeAsync(IMetaStoreContext context, bool forceInit = false)
-        {
-            await base.InitializeNodeAsync(context);
-            ${translationResults}
+      ${fieldResults}
+      public override async ValueTask<OpResult> InitializeNodeAsync(IMetaStoreContext context, bool forceInit = false)
+      {
+        await base.InitializeNodeAsync(context);
 
-            return OpStatus.OK;
-        }
+        return OpStatus.OK;
+      }
     }
   `;
 
